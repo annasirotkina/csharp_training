@@ -26,31 +26,29 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Remove(int v, GroupData group)
+        public GroupHelper Remove(int v)
         {
-            if (GroupExist() == false)
+            manager.Navigator.GoToGroupsPage();
+
+            if (! IsElementPresent(By.Name("selected[]")))
             {
+                InitGroupCreation();
+                GroupData group = new GroupData("aaa");
+                group.Header = "ddd";
+                group.Footer = "fff";
                 FillGroupForm(group);
                 SubmitGroupCreation();
             }
-            manager.Navigator.GoToGroupsPage();
             SelectGroup(v);
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
         }
+  
 
         public bool GroupExist()
         {
-            try
-            {
-                driver.FindElement(By.CssSelector("span.group"));
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
+            return IsElementPresent(By.Name("selected[]"));
             //return driver.findElements(By.Name("selected[]")).isEmpty();
             // return IsElementPresent(By.Name("selected[]"));
         }
