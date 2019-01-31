@@ -26,13 +26,33 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Remove(int v)
+        public GroupHelper Remove(int v, GroupData group)
         {
+            if (GroupExist() == false)
+            {
+                FillGroupForm(group);
+                SubmitGroupCreation();
+            }
             manager.Navigator.GoToGroupsPage();
             SelectGroup(v);
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
+        }
+
+        public bool GroupExist()
+        {
+            try
+            {
+                driver.FindElement(By.CssSelector("span.group"));
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+            //return driver.findElements(By.Name("selected[]")).isEmpty();
+            // return IsElementPresent(By.Name("selected[]"));
         }
 
         public GroupHelper Modify(int v, GroupData newData)
