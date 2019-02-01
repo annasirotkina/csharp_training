@@ -32,12 +32,10 @@ namespace WebAddressbookTests
 
             if (! IsElementPresent(By.Name("selected[]")))
             {
-                InitGroupCreation();
                 GroupData group = new GroupData("aaa");
                 group.Header = "ddd";
                 group.Footer = "fff";
-                FillGroupForm(group);
-                SubmitGroupCreation();
+                Create(group);
             }
             manager.Navigator.GoToGroupsPage();
             SelectGroup(v);
@@ -50,12 +48,19 @@ namespace WebAddressbookTests
         public bool GroupExist()
         {
             return IsElementPresent(By.Name("selected[]"));
-            //return driver.findElements(By.Name("selected[]")).isEmpty();
-            // return IsElementPresent(By.Name("selected[]"));
         }
 
         public GroupHelper Modify(int v, GroupData newData)
         {
+            manager.Navigator.GoToGroupsPage();
+            if (! IsElementPresent(By.Name("selected[]")))
+            {
+                GroupData group = new GroupData("aaa");
+                group.Header = "ddd";
+                group.Footer = "fff";
+                Create(group);
+            }
+            
             manager.Navigator.GoToGroupsPage();
             SelectGroup(v);
             InitGroupModification();
