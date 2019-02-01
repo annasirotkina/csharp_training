@@ -39,6 +39,7 @@ namespace WebAddressbookTests
                 FillGroupForm(group);
                 SubmitGroupCreation();
             }
+            manager.Navigator.GoToGroupsPage();
             SelectGroup(v);
             RemoveGroup();
             ReturnToGroupsPage();
