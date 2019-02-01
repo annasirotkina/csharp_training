@@ -29,15 +29,37 @@ namespace WebAddressbookTests
         public GroupHelper Remove(int v)
         {
             manager.Navigator.GoToGroupsPage();
+
+            if (! IsElementPresent(By.Name("selected[]")))
+            {
+                GroupData group = new GroupData("aaa");
+                group.Header = "ddd";
+                group.Footer = "fff";
+                Create(group);
+            }
+
             SelectGroup(v);
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
         }
+  
+        public bool GroupExist()
+        {
+            return IsElementPresent(By.Name("selected[]"));
+        }
 
         public GroupHelper Modify(int v, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
+            if (! IsElementPresent(By.Name("selected[]")))
+            {
+                GroupData group = new GroupData("aaa");
+                group.Header = "ddd";
+                group.Footer = "fff";
+                Create(group);
+            }
+            
             SelectGroup(v);
             InitGroupModification();
             FillGroupForm(newData);
