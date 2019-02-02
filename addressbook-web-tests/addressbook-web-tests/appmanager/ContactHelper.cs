@@ -27,6 +27,12 @@ namespace WebAddressbookTests
 
         public ContactHelper Remove(int v)
         {
+            if (! IsElementPresent(By.Name("selected[]")))
+            {
+                ContactData contact = new ContactData("Ivan", "Ivanov");
+                Create(contact);
+            }
+            
             SelectContact(v);
             RemoveContact();
             CloseAlert();
@@ -35,6 +41,12 @@ namespace WebAddressbookTests
 
         public ContactHelper Modify(int v, ContactData newData)
         {
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                ContactData contact = new ContactData("Ivan", "Ivanov");
+                Create(contact);
+            }
+
             InitContactModification(v);
             FillContactData(newData);
             SubmitContactModification();
@@ -51,7 +63,7 @@ namespace WebAddressbookTests
 
         public ContactHelper InitContactModification(int v)
         {
-            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + (v + 1) + "]")).Click();
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + (v) + "]")).Click();
             return this;
         }
 
@@ -68,7 +80,7 @@ namespace WebAddressbookTests
 
         public ContactHelper SelectContact(int v)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (v+1) + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (v) + "]")).Click();
             return this;
         }
 
