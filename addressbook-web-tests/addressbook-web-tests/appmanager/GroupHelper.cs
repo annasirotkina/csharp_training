@@ -26,6 +26,18 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            manager.Navigator.GoToGroupsPage();
+            ICollection<IWebElement>elements = driver.FindElements(By.CssSelector("span.group")); // считывается список элементов со страницы
+            foreach (IWebElement element in elements) // для каждого элемента в коллекции нужно выполнить ...
+            {
+                groups.Add(new GroupData(element.Text));  // вот эти действия (преобразовать текст в объект типа GroupData) 
+            }
+            return groups;
+        }
+
         public GroupHelper Remove(int v)
         {
             manager.Navigator.GoToGroupsPage();
@@ -111,7 +123,7 @@ namespace WebAddressbookTests
         }
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index+1) + "]")).Click();
             return this;
         }
     }
