@@ -25,6 +25,35 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name=\"entry\"]"));
+            foreach (IWebElement element in elements)
+            {
+                ICollection<IWebElement> cells = element.FindElements(By.TagName("td"));
+                int i = 0;
+                string firstname = null;
+                string lastname = null;
+                foreach (IWebElement cell in cells)
+                {
+                    i++;
+                    if (i == 2)
+                    {
+                        lastname = cell.Text;
+                    }
+                    else if (i == 3)
+                    {
+                        firstname = cell.Text;
+                    }
+                }
+                contacts.Add(new ContactData(firstname, lastname));
+            }
+            return contacts;
+        }
+         
+
         public ContactHelper Remove(int v)
         {
             if (! IsElementPresent(By.Name("selected[]")))

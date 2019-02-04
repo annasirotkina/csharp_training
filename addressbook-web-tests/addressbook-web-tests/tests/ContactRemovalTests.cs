@@ -13,7 +13,11 @@ namespace WebAddressbookTests
         [Test]
         public void ContactRemovalTest()
         {
+            List<ContactData> oldContacts = app.Contact.GetContactList();
             app.Contact.Remove(0);
+            List<ContactData> newContacts = app.Contact.GetContactList();
+            // oldContacts.RemoveAt(0); а вот с этой строчкой тест не проходит.
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }
