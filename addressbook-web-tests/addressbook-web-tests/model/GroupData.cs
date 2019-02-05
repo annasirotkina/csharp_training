@@ -67,7 +67,7 @@ namespace WebAddressbookTests
                 return false;
             }
 
-            if (Object.ReferenceEquals(this, null)) // если это один и тот же объект
+            if (Object.ReferenceEquals(this, other)) // если это один и тот же объект
             {
                 return true;
             }

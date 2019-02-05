@@ -14,9 +14,15 @@ namespace WebAddressbookTests
         public void ContactRemovalTest()
         {
             List<ContactData> oldContacts = app.Contact.GetContactList();
+           oldContacts.ForEach(Console.WriteLine); //написано для дебага, печать списка
+            
             app.Contact.Remove(0);
-            List<ContactData> newContacts = app.Contact.GetContactList();
-            // oldContacts.RemoveAt(0); а вот с этой строчкой тест не проходит.
+
+            List<ContactData> newContacts = app.Contact.GetContactList(); // создается тот же самый список по количеству элементов что и в oldContacts
+            newContacts.ForEach(Console.WriteLine);//написано для дебага, печать списка
+            oldContacts.RemoveAt(0);
+            oldContacts.Sort();
+            newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
         }
     }
