@@ -17,11 +17,11 @@ namespace WebAddressbookTests
             group.Header = "ddd";
             group.Footer = "fff";
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = app.Group.GetGroupList();
 
-            app.Groups.Create(group);
+            app.Group.Create(group);
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            List<GroupData> newGroups = app.Group.GetGroupList();
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
@@ -35,11 +35,11 @@ namespace WebAddressbookTests
             group.Header = "";
             group.Footer = "";
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = app.Group.GetGroupList();
 
-            app.Groups.Create(group);
+            app.Group.Create(group);
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            List<GroupData> newGroups = app.Group.GetGroupList();
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
@@ -52,11 +52,11 @@ namespace WebAddressbookTests
             group.Header = "";
             group.Footer = "";
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = app.Group.GetGroupList();
 
-            app.Groups.Create(group);
+            app.Group.Create(group);
 
-            List<GroupData> newGroups = app.Groups.GetGroupList(); 
+            List<GroupData> newGroups = app.Group.GetGroupList(); 
             oldGroups.Add(group); //к старому списку добавляем только что созданную группу
             oldGroups.Sort();     // сравнивается старый список с добавленной группой
             newGroups.Sort(); // и новый список, прочитанный из приложения

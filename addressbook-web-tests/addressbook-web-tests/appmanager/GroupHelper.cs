@@ -26,6 +26,7 @@ namespace WebAddressbookTests
             return this;
         }
 
+
         public List<GroupData> GetGroupList()
         {
             List<GroupData> groups = new List<GroupData>();
@@ -42,14 +43,6 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToGroupsPage();
 
-            if (! IsElementPresent(By.Name("selected[]")))
-            {
-                GroupData group = new GroupData("aaa");
-                group.Header = "ddd";
-                group.Footer = "fff";
-                Create(group);
-            }
-
             SelectGroup(v);
             RemoveGroup();
             ReturnToGroupsPage();
@@ -64,14 +57,7 @@ namespace WebAddressbookTests
         public GroupHelper Modify(int v, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
-            if (! IsElementPresent(By.Name("selected[]")))
-            {
-                GroupData group = new GroupData("aaa");
-                group.Header = "ddd";
-                group.Footer = "fff";
-                Create(group);
-            }
-            
+                      
             SelectGroup(v);
             InitGroupModification();
             FillGroupForm(newData);
@@ -125,6 +111,11 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index+1) + "]")).Click();
             return this;
+        }
+
+        public bool CheckGroup()
+        {
+            return IsElementPresent(By.Name("selected[]"));
         }
     }
 }

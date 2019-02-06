@@ -78,7 +78,7 @@ namespace WebAddressbookTests
                 return navigator;
             }
         }
-        public GroupHelper Groups
+        public GroupHelper Group
         {
             get
             {

@@ -24,7 +24,7 @@ namespace WebAddressbookTests
             manager.Navigator.GoToHomePage();
             return this;
         }
-
+        
         public List<ContactData> GetContactList()
         {
             List<ContactData> contacts = new List<ContactData>();
@@ -56,12 +56,6 @@ namespace WebAddressbookTests
 
         public ContactHelper Remove(int v)
         {
-            if (! IsElementPresent(By.Name("selected[]")))
-            {
-                ContactData contact = new ContactData("Ivan", "Ivanov");
-                Create(contact);
-            }
-            
             SelectContact(v);
             RemoveContact();
             CloseAlert();
@@ -70,12 +64,6 @@ namespace WebAddressbookTests
 
         public ContactHelper Modify(int v, ContactData newData)
         {
-            if (!IsElementPresent(By.Name("selected[]")))
-            {
-                ContactData contact = new ContactData("Ivan", "Ivanov");
-                Create(contact);
-            }
-
             InitContactModification(v);
             FillContactData(newData);
             SubmitContactModification();
@@ -128,6 +116,11 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.Name("submit")).Click();
             return this;
+        }
+
+        public bool CheckContact()
+        {
+            return IsElementPresent(By.Name("selected[]"));
         }
     }
 }
