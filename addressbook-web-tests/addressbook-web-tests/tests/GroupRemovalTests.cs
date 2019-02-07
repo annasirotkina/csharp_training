@@ -27,15 +27,15 @@ namespace WebAddressbookTests
 
             // сам тест на удаление
 
-           // List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = app.Group.GetGroupList();
 
             app.Group.Remove(0);
             
-            //List<GroupData> newGroups = app.Groups.GetGroupList();
-           // oldGroups.RemoveAt(0);
-           // oldGroups.Sort();
-          //  newGroups.Sort();
-            //Assert.AreEqual(oldGroups, newGroups);
+            List<GroupData> newGroups = app.Group.GetGroupList();
+            oldGroups.RemoveAt(0);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }

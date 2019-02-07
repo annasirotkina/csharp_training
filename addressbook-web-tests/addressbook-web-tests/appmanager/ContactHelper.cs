@@ -59,6 +59,7 @@ namespace WebAddressbookTests
             SelectContact(v);
             RemoveContact();
             CloseAlert();
+            manager.Navigator.GoToHomePage();
             return this;
         }
 

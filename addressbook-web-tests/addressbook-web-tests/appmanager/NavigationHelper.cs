@@ -26,6 +26,7 @@ namespace WebAddressbookTests
                 return;
             }
             driver.Navigate().GoToUrl(baseURL);
+           
 
         }
         public void GoToGroupsPage()
