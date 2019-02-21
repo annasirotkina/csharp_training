@@ -23,14 +23,12 @@ namespace WebAddressbookTests
             }
             //сам тест на удаление
             List<ContactData> oldContacts = app.Contact.GetContactList();
-            oldContacts.ForEach(Console.WriteLine); //написано для дебага, печать списка
-
+           
             app.Contact.Remove(0);
 
-            Thread.Sleep(1000);
+            Thread.Sleep(1000); //в этом месте нужна задержка, так как иначе не успевает прогрузиться и создается newContacts c удаленным элементом
 
-            List<ContactData> newContacts = app.Contact.GetContactList(); // создается тот же самый список по количеству элементов что и в oldContacts
-            newContacts.ForEach(Console.WriteLine);//написано для дебага, печать списка
+            List<ContactData> newContacts = app.Contact.GetContactList();
             oldContacts.RemoveAt(0);
             oldContacts.Sort();
             newContacts.Sort();

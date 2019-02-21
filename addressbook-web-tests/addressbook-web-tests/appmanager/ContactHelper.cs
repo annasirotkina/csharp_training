@@ -32,22 +32,11 @@ namespace WebAddressbookTests
             ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name=\"entry\"]"));
             foreach (IWebElement element in elements)
             {
-                ICollection<IWebElement> cells = element.FindElements(By.TagName("td"));
-                int i = 0;
-                string firstname = null;
-                string lastname = null;
-                foreach (IWebElement cell in cells)
-                {
-                    i++;
-                    if (i == 2)
-                    {
-                        lastname = cell.Text;
-                    }
-                    else if (i == 3)
-                    {
-                        firstname = cell.Text;
-                    }
-                }
+                var cells = element.FindElements(By.TagName("td"));
+                string lastname = cells[1].Text;
+                string firstname = cells[2].Text;
+                string id = cells[0].FindElement(By.TagName("input")).GetAttribute("value");
+
                 contacts.Add(new ContactData(firstname, lastname));
             }
             return contacts;
