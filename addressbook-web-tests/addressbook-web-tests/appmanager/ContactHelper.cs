@@ -181,5 +181,21 @@ namespace WebAddressbookTests
             return Int32.Parse(m.Value);
         }
 
+        public ContactData GetContactInformationFromDetails(int v)
+        {
+            manager.Navigator.GoToHomePage();
+            OpenDetails(v);
+            string allInfo = driver.FindElement(By.Id("content")).Text;
+            return new ContactData(null, null)
+            {
+                AllInfo = allInfo
+            };
+        }
+        public ContactHelper OpenDetails(int v)
+        {
+            driver.FindElement(By.XPath("(//img[@alt='Details'])[" + (v + 1) + "]")).Click();
+            return this;
+        }
+
     }
 }

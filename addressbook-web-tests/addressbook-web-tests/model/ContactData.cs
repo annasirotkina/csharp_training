@@ -11,6 +11,7 @@ namespace WebAddressbookTests
     {
         private string allPhones;
         private string allEmails;
+        private string  allInfo;
 
         public ContactData(string firstname, string lastname)
         {
@@ -22,12 +23,15 @@ namespace WebAddressbookTests
         public string Lastname { get; set; }
         public string Id { get; set; }
         public string Address { get; set; }
+
         public string HomePhone { get; set; }
         public string MobilePhone { get; set; }
         public string WorkPhone { get; set; }
+
         public string Email { get; set; }
         public string Email2 { get; set; }
         public string Email3 { get; set; }
+        
         public string AllPhones
         {
             get
@@ -73,6 +77,49 @@ namespace WebAddressbookTests
             set
             {
                 allEmails = value;
+            }
+        }
+        public string AllInfo
+        {
+            get
+            {
+                if (allInfo != null)
+                {
+                    return allInfo;
+                }
+                else
+                {
+                    return (Firstname + " " + Lastname + "\r\n" + TransformContactDetails(Address) + "\r\n" + TransformContactDetails(HomePhone) + TransformContactDetails(MobilePhone) + TransformContactDetails(WorkPhone) + "\r\n" + TransformContactDetails(Email) + TransformContactDetails(Email2) + TransformContactDetails(Email3)).Trim();
+
+                }
+            }
+            set
+            {
+                allInfo = value;
+            }
+        }
+        private string TransformContactDetails(string element)
+        {
+            if (element == null || element == "")
+            {
+                return null;
+            }
+            else
+            {
+                if (element == HomePhone)
+                {
+                    return ("H: " + element + "\r\n");
+                }
+                if (element == MobilePhone)
+                {
+                    return ("M: " + element + "\r\n");
+                }
+                if (element == WorkPhone)
+                {
+                    return ("W: " + element + "\r\n");
+                }
+
+                else return element + "\r\n";
             }
         }
         public int CompareTo(ContactData other)
