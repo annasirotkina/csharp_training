@@ -71,7 +71,7 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return (Email + "\r\n" + Email2 + "\r\n" + Email3).Trim();
+                    return (TransformContactDetails(Email) + TransformContactDetails(Email2) + TransformContactDetails(Email3)).Trim();
                 }
             }
             set
