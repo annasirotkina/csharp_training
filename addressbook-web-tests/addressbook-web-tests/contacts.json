@@ -1,0 +1,32 @@
+[
+  {
+    "Firstname": "E",
+    "Lastname": "%",
+    "Id": null,
+    "Address": ":",
+    "HomePhone": null,
+    "MobilePhone": null,
+    "WorkPhone": null,
+    "Email": null,
+    "Email2": null,
+    "Email3": null,
+    "AllPhones": "",
+    "AllEmails": "",
+    "AllInfo": "E %\r\n:"
+  },
+  {
+    "Firstname": "I",
+    "Lastname": "1",
+    "Id": null,
+    "Address": ".",
+    "HomePhone": null,
+    "MobilePhone": null,
+    "WorkPhone": null,
+    "Email": null,
+    "Email2": null,
+    "Email3": null,
+    "AllPhones": "",
+    "AllEmails": "",
+    "AllInfo": "I 1\r\n."
+  }
+]
