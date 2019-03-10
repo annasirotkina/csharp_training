@@ -127,9 +127,10 @@ namespace WebAddressbookTests
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (v+1) + "]")).Click();
             return this;
         }
-        public void SelectContact(string id)
+        public ContactHelper SelectContact(string id)
         {
-            driver.FindElement(By.Id(id)).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
+            return this;
         }
 
         public ContactHelper InitContactCreation()
