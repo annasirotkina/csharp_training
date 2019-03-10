@@ -22,15 +22,15 @@ namespace WebAddressbookTests
                 app.Contact.Create(contact);
             }
             //сам тест на удаление
-            List<ContactData> oldContacts = app.Contact.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();
             ContactData toBeRemoved = oldContacts[0];
-            app.Contact.Remove(0);
+            app.Contact.Remove(toBeRemoved);
 
             Thread.Sleep(1000); //в этом месте нужна задержка, так как иначе не успевает прогрузиться и создается newContacts c удаленным элементом
-            
+
             Assert.AreEqual(oldContacts.Count - 1, app.Contact.GetContactCount());
 
-            List<ContactData> newContacts = app.Contact.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();
             oldContacts.RemoveAt(0);
             oldContacts.Sort();
             newContacts.Sort();
