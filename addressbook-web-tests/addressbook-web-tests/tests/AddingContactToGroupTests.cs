@@ -13,6 +13,23 @@ namespace WebAddressbookTests
 
         public void TestAddingContactToGroup()
         {
+            //проверка наличия хотя бы одного контакта
+
+            if (app.Contact.CheckContact() == false)
+            {
+                app.Contact.Create(new ContactData(GenerateRandomString(30), GenerateRandomString(30)));
+                //contact.Add(new ContactData(GenerateRandomString(30), GenerateRandomString(30)));
+            }
+            // проверка наличия хотя бы одной группы
+            //app.Navigator.GoToGroupsPage();
+            // if (app.Group.CheckGroup() == false)
+            //{
+            //     GroupData group = new GroupData("aaa");
+            //     group.Header = "ddd";
+            //     group.Footer = "fff";
+            //     app.Group.Create(group);
+            //  }
+            
             GroupData group = GroupData.GetAll()[0];
             List<ContactData> oldList = group.GetContacts();
             ContactData contact = ContactData.GetAll().Except(oldList).First();
