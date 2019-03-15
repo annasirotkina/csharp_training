@@ -31,8 +31,11 @@ namespace WebAddressbookTests
             //  }
             
             GroupData group = GroupData.GetAll()[0];
+            //System.Console.Out.WriteLine(group);
             List<ContactData> oldList = group.GetContacts();
+            System.Console.Out.WriteLine(oldList);
             ContactData contact = ContactData.GetAll().Except(oldList).First();
+            System.Console.Out.WriteLine(contact);
 
             app.Contact.AddContactToGroup(contact, group);
 
