@@ -13,7 +13,19 @@ namespace WebAddressbookTests
 
         public void TestDeleteContactFromGroup()
         {
+            // проверка наличия хотя бы одной группы
+            if (app.Group.CheckGroup() == false)
+            {
+                app.Group.Create(new GroupData(GenerateRandomString(30)));
+            }
+
             GroupData group = GroupData.GetAll()[0];
+                        
+            int i = group.GetContacts().Count();
+            if (i == 0)
+            {
+                app.Contact.Create(new ContactData(GenerateRandomString(30), GenerateRandomString(30)));
+            }
             List<ContactData> oldList = group.GetContacts();
             ContactData contact = oldList[0];
 

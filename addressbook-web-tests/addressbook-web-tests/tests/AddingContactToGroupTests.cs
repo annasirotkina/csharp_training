@@ -18,25 +18,25 @@ namespace WebAddressbookTests
             if (app.Contact.CheckContact() == false)
             {
                 app.Contact.Create(new ContactData(GenerateRandomString(30), GenerateRandomString(30)));
-                //contact.Add(new ContactData(GenerateRandomString(30), GenerateRandomString(30)));
             }
             // проверка наличия хотя бы одной группы
-            //app.Navigator.GoToGroupsPage();
-            // if (app.Group.CheckGroup() == false)
-            //{
-            //     GroupData group = new GroupData("aaa");
-            //     group.Header = "ddd";
-            //     group.Footer = "fff";
-            //     app.Group.Create(group);
-            //  }
+            if (app.Group.CheckGroup() == false)
+            {
+                app.Group.Create(new GroupData(GenerateRandomString(30)));
+            }
             
-            GroupData group = GroupData.GetAll()[0];
-            //System.Console.Out.WriteLine(group);
-            List<ContactData> oldList = group.GetContacts();
-            System.Console.Out.WriteLine(oldList);
-            ContactData contact = ContactData.GetAll().Except(oldList).First();
-            System.Console.Out.WriteLine(contact);
+            GroupData group = GroupData.GetAll()[0]; // берем первую попавшуся группу
+            List<ContactData> oldList = group.GetContacts(); // получаем список контактов, входящих в нее
+            // проверка на то, что если все контакты уже в группе, то создать новый контакт
+            int i = ContactData.GetAll().Except(oldList).Count();
+            if (i == 0)
+            {
+                app.Contact.Create(new ContactData(GenerateRandomString(30), GenerateRandomString(30)));
+            }
 
+            ContactData contact = ContactData.GetAll().Except(oldList).First(); // получаем список контактов, не входящих в нее
+                                                             
+            
             app.Contact.AddContactToGroup(contact, group);
 
             List<ContactData> newList = group.GetContacts();
