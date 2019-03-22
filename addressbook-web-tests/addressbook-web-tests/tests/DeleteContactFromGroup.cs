@@ -24,7 +24,10 @@ namespace WebAddressbookTests
             int i = group.GetContacts().Count();
             if (i == 0)
             {
+
                 app.Contact.Create(new ContactData(GenerateRandomString(30), GenerateRandomString(30)));
+                 
+                app.Contact.AddContactToGroup(ContactData.GetAll().First(), group);
             }
             List<ContactData> oldList = group.GetContacts();
             ContactData contact = oldList[0];
