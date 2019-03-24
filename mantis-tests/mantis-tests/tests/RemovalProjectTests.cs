@@ -12,7 +12,14 @@ namespace mantis_tests
         [Test]
         public void TestRemovalProject()
         {
-            List<ProjectData> oldList = app.Project.GetProjects();
+            AccountData account = new AccountData()
+            {
+                Name = "administrator",
+                Password = "root"
+            };
+
+            List<ProjectData> oldList = app.API.GetAllProject(account);
+
             ProjectData existingProject = oldList[0];
             if (existingProject == null)
             {
@@ -23,13 +30,13 @@ namespace mantis_tests
                 };
 
 
-                app.Project.Add(newData);
+                app.API.AddProject(account, newData);
             }
 
-            oldList = app.Project.GetProjects();
+            oldList = app.API.GetAllProject(account);
             app.Project.Remove(existingProject);
 
-            List<ProjectData> newList = app.Project.GetProjects();
+            List<ProjectData> newList = app.API.GetAllProject(account);
             oldList.RemoveAt(0);
             oldList.Sort();
             newList.Sort();
